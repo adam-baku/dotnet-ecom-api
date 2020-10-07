@@ -27,7 +27,7 @@ namespace ProductTest.Application.Command
 
             //when
             CreateProductCommandHandler handler = new CreateProductCommandHandler(productRepositoryMock.Object);
-            handler.handle(command);
+            handler.Handle(command);
 
             //then
             productRepositoryMock.Verify(repository => repository.ProductExists(It.IsAny<string>()), Times.Once());
@@ -54,7 +54,7 @@ namespace ProductTest.Application.Command
             
             //then
             var exception = Assert.Throws<ProductAlreadyExistsException>(
-                () => handler.handle(command) //when
+                () => handler.Handle(command) //when
             );
 
             Assert.Equal("Title of product must be uniqe.", exception.Message);

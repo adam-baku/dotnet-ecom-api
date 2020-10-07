@@ -2,8 +2,6 @@
 using Product.Application.Exception;
 using Product.Domain;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Product.Application.Command
 {
@@ -16,7 +14,7 @@ namespace Product.Application.Command
             this.repository = repository;
         }
 
-        public void handle(CreateProductCommand command)
+        public void Handle(CreateProductCommand command)
         {
             if (repository.ProductExists(command.Title)) {
                 throw ProductAlreadyExistsException.TitleUnique();

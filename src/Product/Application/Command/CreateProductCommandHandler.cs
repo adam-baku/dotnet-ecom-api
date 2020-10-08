@@ -1,11 +1,12 @@
-﻿using Common.Price;
+﻿using Common;
+using Common.Price;
 using Product.Application.Exception;
 using Product.Domain;
 using System;
 
 namespace Product.Application.Command
 {
-    public class CreateProductCommandHandler
+    public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
     {
         private readonly IProductRepository repository;
 

@@ -1,4 +1,5 @@
 ﻿using Common.Price;
+using Product.Domain.Exception;
 using System;
 
 namespace Product.Domain
@@ -13,10 +14,52 @@ namespace Product.Domain
 
         public Product(string title, int availableQuantity, Price price)
         {
+            AssertQuantity(availableQuantity);
+
             ProductId = Guid.NewGuid();
             Title = title;
             AvailableQuantity = availableQuantity;
             Price = price;
+        }
+
+        public void ChangeTitle(string newTitle)
+        {
+            Title = newTitle;
+        }
+
+        public void ChangePrice(Price newPrice)
+        {
+            Price = newPrice;
+        }
+
+        public void ChangeQuantity(int newQuantity)
+        {
+            AssertQuantity(newQuantity);
+
+            AvailableQuantity = newQuantity;
+        }
+
+        public void SubtractQuantity(int quantity)
+        {
+            AssertQuantity(quantity);
+
+            if (!CanSubtract(quantity)) {
+                throw SubtractionNotAllowedException.MoreThanAvailable();
+            }
+
+            AvailableQuantity -= quantity;
+        }
+
+        public bool CanSubtract(int quantity)
+        {
+            return quantity <= AvailableQuantity;
+        }
+
+        private void AssertQuantity(int quantity)
+        {
+            if (quantity <= 0) {
+                throw InvalidQuantityException.NonPositiveValue();
+            }
         }
     }
 }

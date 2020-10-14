@@ -12,6 +12,9 @@ namespace Common.Price
         public Tax Tax { get; private set; }
         public Currency Currency { get; private set; }
 
+        //EF Core
+        private Price() { }
+
         public Price(double net, Tax tax, Currency currency)
         {
             Net = Math.Round(net, 2);

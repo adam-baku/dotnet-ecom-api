@@ -7,7 +7,10 @@ namespace Common.Price
 {
     public class Tax
     {
-        public readonly double Value;
+        public double Value { get; private set; }
+
+        //EF Core
+        private Tax() { }
 
         public Tax(double value)
         {

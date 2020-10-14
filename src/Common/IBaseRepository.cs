@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Common
 {
     public interface IBaseRepository<TEntity>
         where TEntity : EntityAbstract
     {
-        void Persist(TEntity entity);
-        TEntity Find(Guid id);
+        Task AddAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task<TEntity> FindAsync(Guid id);
     }
 }

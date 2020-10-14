@@ -10,7 +10,7 @@ namespace Data.Migrations
                 name: "Product",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<string>(type: "varchar(50)", nullable: false),
                     Title = table.Column<string>(type: "varchar(255)", nullable: false),

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Common;
+using System.Threading.Tasks;
 
 namespace Product.Domain
 {
-    public interface IProductRepository
+    public interface IProductRepository : IBaseRepository<Product>
     {
-        public void Persist(Product product);
-        public bool ProductExists(string title);
+        Task<bool> ProductExistsAsync(string title);
     }
 }

@@ -3,10 +3,11 @@ using Common.Price;
 using Product.Application.Exception;
 using Product.Domain;
 using System;
+using System.Threading.Tasks;
 
 namespace Product.Application.Command
 {
-    public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
+    public class CreateProductCommandHandler : ICommandHandlerAsync<CreateProductCommand>
     {
         private readonly IProductRepository repository;
 
@@ -15,9 +16,9 @@ namespace Product.Application.Command
             this.repository = repository;
         }
 
-        public void Handle(CreateProductCommand command)
+        public async Task HandleAsync(CreateProductCommand command)
         {
-            if (repository.ProductExists(command.Title)) {
+            if (await repository.ProductExistsAsync(command.Title)) {
                 throw ProductAlreadyExistsException.TitleUnique();
             }
 
@@ -27,7 +28,7 @@ namespace Product.Application.Command
                 new Price(command.NetPrice, new Tax(command.TaxRate), command.Currency)
             );
 
-            repository.Persist(product);
+            await repository.AddAsync(product);
         }
     }
 }

@@ -12,15 +12,22 @@ namespace Data.Mapping
         {
             builder.ToTable("Product");
 
-            builder.HasKey(p => p.Id);
+            //simple numeric id as shadow primary key
+            builder.Property<long>("Id")
+                .HasColumnName("Id")
+                .HasColumnType("bigint")
+                .IsRequired();
 
-            builder.HasIndex(p => p.ProductId)
+            builder.HasKey("Id");
+
+            builder.HasIndex(p => p.EntityId)
+                .HasName("IX_Product_ProductId")
                 .IsUnique();
 
             builder.HasIndex(p => p.Title)
                 .IsUnique();
 
-            builder.Property(p => p.ProductId)
+            builder.Property(p => p.EntityId)
                 .HasColumnName("ProductId")
                 .HasColumnType("varchar(50)")
                 .IsRequired();

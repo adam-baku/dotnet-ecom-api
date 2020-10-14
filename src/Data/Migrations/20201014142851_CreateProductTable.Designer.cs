@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20201013094251_CreateProductTable")]
+    [Migration("20201014142851_CreateProductTable")]
     partial class CreateProductTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,7 @@ namespace Data.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,7 +32,7 @@ namespace Data.Migrations
                         .HasColumnName("AvailableQuantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProductId")
+                    b.Property<string>("EntityId")
                         .IsRequired()
                         .HasColumnName("ProductId")
                         .HasColumnType("varchar(50)");
@@ -43,8 +44,9 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId")
-                        .IsUnique();
+                    b.HasIndex("EntityId")
+                        .IsUnique()
+                        .HasName("IX_Product_ProductId");
 
                     b.HasIndex("Title")
                         .IsUnique();

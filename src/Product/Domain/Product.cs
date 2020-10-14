@@ -1,13 +1,12 @@
-﻿using Common.Price;
+﻿using Common;
+using Common.Price;
 using Product.Domain.Exception;
 using System;
 
 namespace Product.Domain
 {
-    public class Product
+    public class Product : EntityAbstract
     {
-        public long Id { get; private set; }
-        public Guid ProductId { get; private set; }
         public string Title { get; private set; }
         public int AvailableQuantity { get; private set; }
         public Price Price { get; private set; }
@@ -19,7 +18,7 @@ namespace Product.Domain
         {
             AssertQuantity(availableQuantity);
 
-            ProductId = Guid.NewGuid();
+            EntityId = Guid.NewGuid();
             Title = title;
             AvailableQuantity = availableQuantity;
             Price = price;

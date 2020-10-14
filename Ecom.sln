@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "src\Common\Common
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTest", "test\CommonTest\CommonTest.csproj", "{C10A882D-EB3E-49A3-874F-366DB65857D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "src\Web\Web.csproj", "{A529EBF0-399A-4CE9-A992-481ED3F12E2E}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "src\Data\Data.csproj", "{E397E256-DDE9-4476-A0E0-3AB11AE36DC2}"
 EndProject
 Global

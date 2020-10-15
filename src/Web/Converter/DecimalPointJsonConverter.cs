@@ -12,7 +12,7 @@ namespace Web.Converter
     {
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            throw new NotImplementedException();
+            return (T)Convert.ChangeType(reader.GetDouble(), typeof(T));
         }
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
